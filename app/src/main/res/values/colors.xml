@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryLight">#5D7CFF</color>
+    <color name="primaryDark">#5D7CFF</color>
+    <color name="softPrimary">#8FA4FF</color>
+    <color name="verySoftPrimary">#C2CEFF</color>
+    <color name="success">#8BE28B</color>
+    <color name="error">#FF6961</color>
+    <color name="warning">#FFB861</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black">#333333</color>
+    <color name="softBlack">#636363</color>
+    <color name="darkGrey">#AAAAAA</color>
+    <color name="grey">#DADADA</color>
+    <color name="lightGrey">#EEEEEE</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="background">#F5F6F7</color>
+</resources>
