@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import com.projects.pitjarus_tracking.AppConfiguration;
 import com.projects.pitjarus_tracking.connections.requests.DatabaseErrorListener;
 import com.projects.pitjarus_tracking.connections.requests.DatabaseSuccessListener;
-import com.projects.pitjarus_tracking.connections.requests.GetStoreRequest;
+import com.projects.pitjarus_tracking.connections.requests.GetStoreDetailRequest;
 import com.projects.pitjarus_tracking.models.StoreModel;
 
 import java.util.List;
@@ -37,32 +37,11 @@ public class PitjarusTrackingDatabase implements IPitjarusTrackingDatabase{
     @Override
     public void insertStore(StoreModel storeModel, DatabaseSuccessListener<Long> successListener, DatabaseErrorListener errorListener) {
         Log.v("responseDatabase", storeModel.toString());
-//        new Thread(){
-//            @Override
-//            public void run() {
-//                Long id = databaseDefinition.storeDao().insert(storeModel);
-//                successListener.setResult(id);
-//
-//                if (currentActivity != null){
-//                    currentActivity.runOnUiThread(successListener);
-//                    return;
-//                }
-//                successListener.run();
-//            }
-//        }.start();
-    }
-
-    @Override
-    public void getAllStore(GetStoreRequest request, DatabaseSuccessListener<List<StoreModel>> successListener, DatabaseErrorListener errorListener) {
         new Thread(){
             @Override
             public void run() {
-                List<StoreModel> storeModelList = databaseDefinition.storeDao().getAllStore(
-                        request.getPageNo(),
-                        request.getPageSize()
-                );
-
-                successListener.setResult(storeModelList);
+                Long id = databaseDefinition.storeDao().insert(storeModel);
+                successListener.setResult(id);
 
                 if (currentActivity != null){
                     currentActivity.runOnUiThread(successListener);
@@ -71,5 +50,28 @@ public class PitjarusTrackingDatabase implements IPitjarusTrackingDatabase{
                 successListener.run();
             }
         }.start();
+    }
+
+    @Override
+    public void getAllStore(DatabaseSuccessListener<List<StoreModel>> successListener, DatabaseErrorListener errorListener) {
+        new Thread(){
+            @Override
+            public void run() {
+                List<StoreModel> storeModelList = databaseDefinition.storeDao().getAllStore();
+
+                successListener.setResult(storeModelList);
+
+                if (currentActivity != null) {
+                    currentActivity.runOnUiThread(successListener);
+                    return;
+                }
+                successListener.run();
+            }
+        }.start();
+    }
+
+    @Override
+    public void getStoreDetail(GetStoreDetailRequest request, DatabaseSuccessListener<Long> successListener, DatabaseErrorListener errorListener) {
+
     }
 }

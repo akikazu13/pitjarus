@@ -10,7 +10,7 @@ import com.projects.pitjarus_tracking.R;
 import com.projects.pitjarus_tracking.connections.requests.PostLoginRequest;
 import com.projects.pitjarus_tracking.databinding.ActivityLoginBinding;
 import com.projects.pitjarus_tracking.features.BaseActivity;
-import com.projects.pitjarus_tracking.features.mainmenu.MainmenuActivity;
+import com.projects.pitjarus_tracking.features.mainMenu.MainMenuActivity;
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     }
 
     private void showMainmenuActivity(){
-        Intent intent = new Intent(LoginActivity.this, MainmenuActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
 }

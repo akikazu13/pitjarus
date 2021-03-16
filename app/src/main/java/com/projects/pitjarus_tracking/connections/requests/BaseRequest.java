@@ -26,20 +26,4 @@ public abstract class BaseRequest {
         parameters = new HashMap<>();
     }
 
-    public JSONObject generateJSONParameter(){
-        populateParameters();
-
-        JSONObject parameter = new JSONObject();
-        try {
-            Set<Map.Entry<String, Object>> entries = parameters.entrySet();
-            for(Map.Entry<String, Object> entry : entries) {
-                if (entry.getValue() != null) {
-                    parameter.put(entry.getKey(), entry.getValue());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return parameter;
-    }
 }

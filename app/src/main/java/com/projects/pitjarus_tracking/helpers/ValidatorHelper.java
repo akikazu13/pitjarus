@@ -1,4 +1,4 @@
-package com.projects.pitjarus_tracking.Helpers;
+package com.projects.pitjarus_tracking.helpers;
 
 /**
  * Created by Sohibun Nawawi on 12/03/2021.

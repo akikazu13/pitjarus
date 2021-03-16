@@ -1,4 +1,4 @@
-package com.projects.pitjarus_tracking.Helpers;
+package com.projects.pitjarus_tracking.helpers;
 
 import android.content.Context;
 

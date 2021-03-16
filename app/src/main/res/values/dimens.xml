@@ -7,7 +7,9 @@
     <dimen name="textOverline">@dimen/_8ssp</dimen>
     <dimen name="textButton">@dimen/_12ssp</dimen>
 
-    <dimen name="iconHighSize">@dimen/_90sdp</dimen>
+    <dimen name="iconMenuSize">@dimen/_45sdp</dimen>
+    <dimen name="iconMenuHighSize">@dimen/_80sdp</dimen>
+    <dimen name="iconHighSize">@dimen/_65sdp</dimen>
     <dimen name="iconLowSize">@dimen/_18sdp</dimen>
     <dimen name="iconNormalSize">@dimen/_25sdp</dimen>
     <dimen name="iconLine">@dimen/_2sdp</dimen>

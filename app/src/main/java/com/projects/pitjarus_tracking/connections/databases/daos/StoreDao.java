@@ -20,6 +20,10 @@ public interface StoreDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long insert (StoreModel storeModel);
 
-    @Query("SELECT * FROM StoreModel ORDER BY 1 DESC LIMIT :pageNo, :pageSize")
-    List<StoreModel> getAllStore (Integer pageNo, Integer pageSize);
+    @Query("SELECT * FROM StoreModel ORDER BY 1 ")
+    List<StoreModel> getAllStore ();
+
+    @Query("SELECT * FROM StoreModel WHERE id = :id")
+    StoreModel getStoreDetail(String id);
+
 }

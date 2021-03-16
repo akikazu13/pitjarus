@@ -72,13 +72,15 @@ public class LoginViewModel extends BaseViewModel {
 
     public void insertResponseToDatabase(List<StoreModel> models){
         for (StoreModel model : models){
+            if (model.getStoreId().equals("1")){
+                model.setIsPerfect(true);
+            }
             Log.v("responseModel", model.toString());
             database.insertStore(
                     model,
                     new DatabaseSuccessListener<Long>() {
                         @Override
                         public void onSuccessResponse(Long results) {
-                            Toast.makeText(getApplication(), "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
                         }
                     },
                     new DatabaseErrorListener() {

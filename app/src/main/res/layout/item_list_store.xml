@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="storeModel"
+            type="com.projects.pitjarus_tracking.models.StoreModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/itemStoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/normalPadding"
+        android:background="@drawable/roundrect_all_white">
+        <RelativeLayout
+            android:layout_width="@dimen/iconNormalSize"
+            android:layout_height="@dimen/iconNormalSize"
+            android:gravity="center"
+            android:background="@drawable/roundrect_all_primary"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_direction"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/lowMargin"
+                android:text="@{storeModel.storeName}"
+                tools:text="Nama Toko Kita"
+                android:textColor="@color/primaryLight"
+                style="@style/textContentTitleStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{storeModel.isPerfect ? View.VISIBLE : View.GONE, default=gone}"
+                android:text="@string/title_status_store"
+                android:textColor="@color/primaryLight"
+                android:drawableStart="@drawable/ic_perfect"
+                android:drawablePadding="@dimen/lowPadding"
+                style="@style/textOverlineStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normalMargin"
+                android:text="@{@string/tag_channel_name(storeModel.channelName, storeModel.subchannelName)}"
+                tools:text="Cluster : Small"
+                style="@style/textContentBodyStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lowMargin"
+                android:text="@{@string/tag_area_name(storeModel.regionName, storeModel.areaName)}"
+                tools:text="TT Regular - IRTM Big Store"
+                style="@style/textContentBodyStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normalMargin"
+                android:text="10 km"
+                tools:text="10 km"
+                android:drawableStart="@drawable/ic_destination"
+                android:drawablePadding="@dimen/lowPadding"
+                android:textColor="@color/darkGrey"
+                style="@style/textContentBodyStyle"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

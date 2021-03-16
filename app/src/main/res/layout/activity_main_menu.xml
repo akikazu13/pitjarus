@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="mainMenuAdapter"
+            type="com.projects.pitjarus_tracking.adapters.SimpleRecyclerAdapter" />
     </data>
 
     <LinearLayout
@@ -78,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SohibunNawawi"
+                android:text="Sohibun Nawawi"
                 style="@style/textContentTitleStyle"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -97,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/highMargin"
+                android:layout_marginBottom="@dimen/normalMargin"
                 android:padding="@dimen/normalPadding"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -174,7 +178,16 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/highMargin"
+                app:setAdapter="@{mainMenuAdapter}"
+                app:setupGridRecyclerView="@{@dimen/lowMargin}"
+                tools:listitem="@layout/item_main_menu"/>
+            
         </LinearLayout>
     </LinearLayout>
 </layout>

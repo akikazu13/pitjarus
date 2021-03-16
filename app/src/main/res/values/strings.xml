@@ -1,4 +1,6 @@
 <resources>
+    <string name="google_maps_api_key">AIzaSyArWhst-O3Hfv3-GQXOLrSDZY9M8jqAv5g</string>
+
     <string name="app_name">Pitjarus Tracking</string>
     <string name="office_name">Pitjarus Teknologi</string>
     <string name="title_login">Login</string>
@@ -6,8 +8,16 @@
     <string name="title_save_login_info">Remember Me</string>
     <string name="title_apk">App Ver 1.0.0 20013FEA6BCC820C</string>
 
+    <string name="title_list_store">Daftar Toko</string>
+    <string name="title_status_store">Perfect Store</string>
+
+    <string name="tag_channel_name">%1$s : %2$s</string>
+    <string name="tag_area_name">%1$s - %2$s</string>
     <string name="title_button_login">Login</string>
 
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
+
+
+    <string name="hint_search_store_name">Cari nama toko</string>
 </resources>

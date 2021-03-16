@@ -2,12 +2,13 @@ package com.projects.pitjarus_tracking;
 
 import android.content.Context;
 
-import com.projects.pitjarus_tracking.Helpers.JSONHelper;
+import androidx.room.Room;
+
+import com.projects.pitjarus_tracking.helpers.JSONHelper;
 import com.projects.pitjarus_tracking.connections.databases.IPitjarusTrackingDatabase;
 import com.projects.pitjarus_tracking.connections.databases.PitjarusTrackingDatabase;
 import com.projects.pitjarus_tracking.connections.databases.PitjarusTrackingDatabaseDefinition;
-import com.projects.pitjarus_tracking.connections.networks.implementations.BaseVolleyAPI;
-import com.projects.pitjarus_tracking.connections.networks.implementations.VolleyAPI;
+import com.projects.pitjarus_tracking.connections.databases.PitjarusTrackingMigrationDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,12 @@ public class AppConfiguration {
         return new PitjarusTrackingDatabase(context);
     }
 
+    public void initDb(Context context) {
+        databaseDefinition = Room.databaseBuilder(context, PitjarusTrackingDatabaseDefinition.class, context.getString(R.string.app_name))
+                .addMigrations(PitjarusTrackingMigrationDatabase.MIGRATION)
+                .build();
+    }
+
     public JSONObject getApiUrl(Context context) {
         Integer apiUrl = BuildConfig.API_ROUTE;
 
@@ -48,9 +55,5 @@ public class AppConfiguration {
 
     public PitjarusTrackingDatabaseDefinition getDatabaseDefinition() {
         return databaseDefinition;
-    }
-
-    public BaseVolleyAPI getVolleyAPI(Context context){
-        return new VolleyAPI(context);
     }
 }

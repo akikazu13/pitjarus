@@ -100,6 +100,10 @@ public class StoreModel extends BaseModel{
     @ColumnInfo(name = "longitude")
     private String longitude;
 
+    @SerializedName("is_perfect")
+    @ColumnInfo(name = "is_perfect")
+    private Boolean isPerfect;
+
     @Override
     public JSONObject getAsJSONObject() {
         JSONObject jsonObject = new JSONObject();
@@ -123,6 +127,7 @@ public class StoreModel extends BaseModel{
             jsonObject.put("region_name", getRegionName());
             jsonObject.put("latitude", getLatitude());
             jsonObject.put("longitude", getLongitude());
+            jsonObject.put("is_perfect", getIsPerfect());
 
         } catch (Exception e) {
             e.printStackTrace();

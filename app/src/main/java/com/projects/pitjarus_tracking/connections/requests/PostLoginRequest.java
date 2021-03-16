@@ -1,6 +1,6 @@
 package com.projects.pitjarus_tracking.connections.requests;
 
-import com.projects.pitjarus_tracking.Helpers.ValidatorHelper;
+import com.projects.pitjarus_tracking.helpers.ValidatorHelper;
 
 import lombok.Builder;
 import lombok.Data;
