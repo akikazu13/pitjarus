@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,9 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.projects.pitjarus_tracking.R;
 import com.projects.pitjarus_tracking.adapters.SimpleRecyclerAdapter;
 import com.projects.pitjarus_tracking.databinding.ActivityListStoreBinding;
@@ -34,6 +37,7 @@ import com.projects.pitjarus_tracking.features.detailStore.DetailStoreActivity;
 import com.projects.pitjarus_tracking.models.StoreModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
@@ -92,6 +96,7 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
 
         storeViewModel.getStoreLiveData().observe(this, response -> {
             storeAdapter.setMainData(response);
+            addMarkStore(response);
             binding.setStoreAdapter(storeAdapter);
         });
 
@@ -127,7 +132,7 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
 
         if (currentLocation != null) {
             LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 14);
             map.animateCamera(cameraUpdate);
         }
 
@@ -138,7 +143,7 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
     protected void startLocationUpdate() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        long UPDATE_INTERVAL = 60000;
+        long UPDATE_INTERVAL = 30000;
         locationRequest.setInterval(UPDATE_INTERVAL);
         long FASTEST_INTERVAL = 5000;
         locationRequest.setFastestInterval(FASTEST_INTERVAL);
@@ -171,7 +176,7 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
 
             getMyLocation();
             startLocationUpdate();
-        } else {
+             } else {
             Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -214,4 +219,13 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
         savedInstanceState.putParcelable(KEY_LOCATION, currentLocation);
         super.onSaveInstanceState(savedInstanceState);
     }
+
+    private void addMarkStore(List<StoreModel> list){
+        for (StoreModel model : list){
+
+            map.addMarker(new MarkerOptions().position(new LatLng(Float.parseFloat(model.getLatitude()), Float.parseFloat(model.getLongitude()))).title(model.getStoreName()));
+        }
+    }
+
+
 }

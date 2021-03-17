@@ -11,6 +11,7 @@
     <string name="title_list_store">Daftar Toko</string>
     <string name="title_dashboard_store">Dashboard Toko</string>
     <string name="title_status_store">Perfect Store</string>
+    <string name="title_wrong_login">Username atau Password salah !</string>
 
     <string name="tag_channel_name">%1$s : %2$s</string>
     <string name="tag_area_name">%1$s - %2$s</string>

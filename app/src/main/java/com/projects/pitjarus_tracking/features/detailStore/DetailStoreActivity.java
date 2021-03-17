@@ -1,7 +1,6 @@
 package com.projects.pitjarus_tracking.features.detailStore;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -33,7 +32,6 @@ public class DetailStoreActivity extends BaseActivity<ActivityDetailStoreBinding
         super.initData();
 
         Integer id = getIntent().getIntExtra("id", 0);
-        Log.v("getIntentCek", id.toString());
 
         detailStoreViewModel = ViewModelProviders.of(this).get(DetailStoreViewModel.class);
         detailStoreViewModel.getDetailStore(id);
@@ -44,7 +42,6 @@ public class DetailStoreActivity extends BaseActivity<ActivityDetailStoreBinding
         super.initLayout();
 
         detailStoreViewModel.getDetailStoreliveData().observe(this, response->{
-            Log.v("cek", response.toString());
             storeModel = response;
             binding.setDetailStoreModel(response);
         });

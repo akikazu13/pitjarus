@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="isTrue"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -42,13 +45,27 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/normalPadding"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/normalMargin"
-                    android:layout_marginBottom="@dimen/highMargin"
-                    android:text="@string/title_login"
-                    style="@style/textActivityTitleStyle"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normalMargin"
+                        android:layout_marginBottom="@dimen/highMargin"
+                        android:text="@string/title_login"
+                        style="@style/textActivityTitleStyle"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normalMargin"
+                        android:layout_marginStart="@dimen/normalMargin"
+                        android:visibility="@{isTrue ? View.VISIBLE : View.GONE, default=gone}"
+                        android:text="@string/title_wrong_login"
+                        android:textColor="@color/error"
+                        style="@style/textOverlineStyle"/>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/etUsername"
                     android:layout_width="match_parent"

@@ -53,10 +53,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
             if (!response.isEmpty()){
                 Log.v("responseObserve", response.toString());
                 loginViewModel.insertResponseToDatabase(response);
+                binding.setIsTrue(false);
                 showMainmenuActivity();
             }
             else {
-                Toast.makeText(getApplication(), "Username dan Password Tidak Sesuai", Toast.LENGTH_SHORT).show();
+                binding.setIsTrue(true);
             }
         });
     }
