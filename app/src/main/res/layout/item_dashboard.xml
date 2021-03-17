@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="progressModel"
+            type="com.projects.pitjarus_tracking.models.ProgressModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/iconMenuDashboard"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/roundrect_all_white"
+        android:elevation="@dimen/veryLowMargin"
+        android:padding="@dimen/normalPadding">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{progressModel.name}"
+            tools:text="ABC"
+            android:textColor="@color/darkGrey"
+            style="@style/textContentBodyStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mediumMargin"
+            android:text="@{@string/tag_progres(progressModel.progress, progressModel.target)}"
+            tools:text="20 / 50"
+            style="@style/textContentBodyStyle"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="@dimen/veryLowMargin"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:background="@drawable/roundrect_progres_bar"
+            tools:max="3"
+            tools:progress="1"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    </LinearLayout>
+</layout>

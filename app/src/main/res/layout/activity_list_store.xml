@@ -53,13 +53,12 @@
             android:layout_marginBottom="@dimen/normalMargin"
             android:hint="@string/hint_search_store_name"
             style="@style/searchBox"/>
-        <FrameLayout
+        <fragment
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:id="@+id/mapFrame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4">
-
-        </FrameLayout>
+            android:layout_weight="4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

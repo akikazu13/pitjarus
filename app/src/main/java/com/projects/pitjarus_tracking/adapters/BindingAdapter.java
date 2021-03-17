@@ -37,6 +37,18 @@ public class BindingAdapter {
         );
     }
 
+    @androidx.databinding.BindingAdapter("setupDinamisGridRecyclerView")
+    public static void setupDinamisGridRecyclerView(RecyclerView recyclerView, float margin){
+        Log.v("column", String.valueOf(UIHelper.newInstance(recyclerView.getContext()).calculateColumnNumber()));
+
+        recyclerView.setLayoutManager(
+                new GridLayoutManager(recyclerView.getContext(), UIHelper.newInstance(recyclerView.getContext()).calculateColumnNumber())
+        );
+        recyclerView.addItemDecoration(
+                new GridSpacingItemDecorationUtil(margin)
+        );
+    }
+
     @androidx.databinding.BindingAdapter("setupHorizontalRecyclerView")
     public static void setupHorizontalRecyclerView(RecyclerView recyclerView, float margin){
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(), RecyclerView.HORIZONTAL, false));

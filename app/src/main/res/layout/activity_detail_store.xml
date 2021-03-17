@@ -1,13 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
+        <variable
+            name="detailStoreModel"
+            type="com.projects.pitjarus_tracking.models.StoreModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/headerTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pic_toko" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normalMargin"
+                android:src="@drawable/ic_back_border" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/highMargin"
+                android:orientation="horizontal"
+                app:layout_anchor="@id/headerTitle"
+                app:layout_anchorGravity="bottom|end">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgTarget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_target_border"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/veryLowMargin" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normalMargin"
+                    android:layout_marginEnd="@dimen/normalMargin"
+                    android:src="@drawable/ic_camera_border"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/veryLowMargin" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgDirection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_direction_border"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/veryLowMargin" />
+            </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/normalMargin"
+                    android:visibility="@{detailStoreModel.isPerfect ? View.VISIBLE : View.GONE, default=gone}"
+                    android:text="@string/title_status_store"
+                    android:textColor="@color/primaryLight"
+                    android:drawableStart="@drawable/ic_perfect"
+                    android:drawablePadding="@dimen/lowPadding"
+                    style="@style/textContentBodyStyle"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/normalPadding"
+                    android:paddingEnd="@dimen/normalPadding"
+                    android:paddingBottom="@dimen/normalPadding"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Nama Toko Kita"
+                        android:text="@{detailStoreModel.storeName}"
+                        style="@style/textContentTitleStyle"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normalMargin"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10Km"
+                            style="@style/textContentBodyStyle"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normalMargin"
+                            android:layout_marginEnd="@dimen/normalMargin"
+                            android:text="-"
+                            style="@style/textContentBodyStyle"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{detailStoreModel.address}"
+                            tools:text="Jatiasih, Bekasi, Jawa Barat"
+                            android:textColor="@color/darkGrey"
+                            style="@style/textContentBodyStyle"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lowMargin"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last Visit  : "
+                            android:textColor="@color/darkGrey"
+                            style="@style/textContentBodyStyle"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25 Februari 2020"
+                            android:textColor="@color/primaryLight"
+                            style="@style/textContentBodyStyle"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lowMargin"
+                android:layout_marginBottom="@dimen/lowMargin"
+                android:paddingTop="@dimen/mediumPadding"
+                android:paddingBottom="@dimen/mediumPadding"
+                android:gravity="center"
+                android:background="@color/white">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="@dimen/highSpace"
+                    android:layout_height="@dimen/iconNormalSize"
+                    android:text="@string/title_button_reset"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/textOverline"
+                    android:background="@drawable/roundrect_all_primary"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/normalPadding"
+                android:paddingStart="@dimen/normalPadding"
+                android:paddingEnd="@dimen/normalPadding"
+                android:paddingBottom="@dimen/mediumPadding"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tipe Display"
+                    android:textColor="@color/darkGrey"
+                    style="@style/textContentBodyStyle"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sub Tipe Display"
+                    android:textColor="@color/darkGrey"
+                    style="@style/textContentBodyStyle"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/normalPadding"
+                android:paddingEnd="@dimen/normalPadding"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{detailStoreModel.dcName}"
+                    tools:text="Display Tipe 1"
+                    style="@style/textContentBodyStyle"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{detailStoreModel.storeCode}"
+                    tools:text="Sub Display Tipe 1"
+                    style="@style/textContentBodyStyle"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/normalPadding"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/mediumMargin"
+                    android:text="Tipe Outlet"
+                    android:textColor="@color/darkGrey"
+                    style="@style/textContentBodyStyle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{detailStoreModel.accountName}"
+                    tools:text="Outlet Tipe A"
+                    style="@style/textContentBodyStyle"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/lowMargin"
+                android:padding="@dimen/normalPadding"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ERTM"
+                        android:textColor="@color/darkGrey"
+                        style="@style/textContentBodyStyle"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lowMargin"
+                        android:src="@drawable/ic_chekclis"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normalMargin"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pareto"
+                        android:textColor="@color/darkGrey"
+                        style="@style/textContentBodyStyle"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lowMargin"
+                        android:src="@drawable/ic_chekclis"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normalMargin"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="E-Merchandising"
+                        android:textColor="@color/darkGrey"
+                        style="@style/textContentBodyStyle"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lowMargin"
+                        android:src="@drawable/ic_canceled"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="bottom"
+                android:padding="@dimen/normalMargin">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNoVisit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_marginEnd="@dimen/lowMargin"
+                    android:text="@string/title_button_no_visit"
+                    style="@style/buttonOutlineErrorStyle"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnVisit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:layout_marginStart="@dimen/lowMargin"
+                    android:text="@string/title_button_visit"
+                    style="@style/buttonPrimaryStyle"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </layout>

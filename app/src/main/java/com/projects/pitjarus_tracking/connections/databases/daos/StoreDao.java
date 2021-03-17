@@ -24,6 +24,6 @@ public interface StoreDao {
     List<StoreModel> getAllStore ();
 
     @Query("SELECT * FROM StoreModel WHERE id = :id")
-    StoreModel getStoreDetail(String id);
+    StoreModel getDetailStore(Integer id);
 
 }

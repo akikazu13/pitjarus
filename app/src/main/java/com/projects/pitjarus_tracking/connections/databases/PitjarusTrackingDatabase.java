@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import com.projects.pitjarus_tracking.AppConfiguration;
 import com.projects.pitjarus_tracking.connections.requests.DatabaseErrorListener;
 import com.projects.pitjarus_tracking.connections.requests.DatabaseSuccessListener;
-import com.projects.pitjarus_tracking.connections.requests.GetStoreDetailRequest;
 import com.projects.pitjarus_tracking.models.StoreModel;
 
 import java.util.List;
@@ -71,7 +70,19 @@ public class PitjarusTrackingDatabase implements IPitjarusTrackingDatabase{
     }
 
     @Override
-    public void getStoreDetail(GetStoreDetailRequest request, DatabaseSuccessListener<Long> successListener, DatabaseErrorListener errorListener) {
+    public void getDetailStore(Integer request, DatabaseSuccessListener<StoreModel> successListener, DatabaseErrorListener errorListener) {
+        new Thread(){
+            @Override
+            public void run() {
+                StoreModel storeModel = databaseDefinition.storeDao().getDetailStore(request);
 
+                successListener.setResult(storeModel);
+
+                if (currentActivity != null){
+                    currentActivity.runOnUiThread(successListener);
+                }
+                successListener.run();
+            }
+        }.start();
     }
 }

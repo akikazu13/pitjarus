@@ -2,7 +2,6 @@ package com.projects.pitjarus_tracking.connections.databases;
 
 import com.projects.pitjarus_tracking.connections.requests.DatabaseErrorListener;
 import com.projects.pitjarus_tracking.connections.requests.DatabaseSuccessListener;
-import com.projects.pitjarus_tracking.connections.requests.GetStoreDetailRequest;
 import com.projects.pitjarus_tracking.models.StoreModel;
 
 import java.util.List;
@@ -20,8 +19,8 @@ public interface IPitjarusTrackingDatabase {
     void getAllStore(DatabaseSuccessListener<List<StoreModel>> successListener,
                      DatabaseErrorListener errorListener);
 
-    void getStoreDetail(GetStoreDetailRequest request,
-                        DatabaseSuccessListener<Long> successListener,
+    void getDetailStore(Integer request,
+                        DatabaseSuccessListener<StoreModel> successListener,
                         DatabaseErrorListener errorListener);
 
 

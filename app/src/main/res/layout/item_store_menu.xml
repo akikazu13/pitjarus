@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="storeMenuModel"
+            type="com.projects.pitjarus_tracking.models.StoreMenuModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/mainMenuLayout"
+        android:layout_width="@dimen/iconMenuSize"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <RelativeLayout
+            android:layout_width="@dimen/iconMenuSize"
+            android:layout_height="@dimen/iconMenuSize"
+            android:gravity="center"
+            android:background="@drawable/roundrect_all_white"
+            android:elevation="@dimen/veryLowMargin">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:sourceCompat="@{storeMenuModel.icon}"
+                tools:src="@drawable/ic_information" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:gravity="center"
+            android:text="@{storeMenuModel.name}"
+            style="@style/textContentBodyStyle"
+            tools:text="Store Investment"/>
+    </LinearLayout>
+</layout>

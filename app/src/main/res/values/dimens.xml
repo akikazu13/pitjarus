@@ -7,18 +7,24 @@
     <dimen name="textOverline">@dimen/_8ssp</dimen>
     <dimen name="textButton">@dimen/_12ssp</dimen>
 
-    <dimen name="iconMenuSize">@dimen/_45sdp</dimen>
-    <dimen name="iconMenuHighSize">@dimen/_80sdp</dimen>
-    <dimen name="iconHighSize">@dimen/_65sdp</dimen>
+    <dimen name="iconHighSize">@dimen/_60sdp</dimen>
     <dimen name="iconLowSize">@dimen/_18sdp</dimen>
     <dimen name="iconNormalSize">@dimen/_25sdp</dimen>
     <dimen name="iconLine">@dimen/_2sdp</dimen>
 
+    <dimen name="iconMainMenuSize">@dimen/_45sdp</dimen>
+    <dimen name="iconMenuSize">@dimen/_50sdp</dimen>
+    <dimen name="iconMenuHighSize">@dimen/_80sdp</dimen>
+    <dimen name="iconMenuDashboard">@dimen/_110sdp</dimen>
+
     <dimen name="highMargin">@dimen/_20sdp</dimen>
     <dimen name="normalMargin">@dimen/_10sdp</dimen>
     <dimen name="mediumMargin">@dimen/_8sdp</dimen>
+    <dimen name="fairMargin">@dimen/_5sdp</dimen>
     <dimen name="lowMargin">@dimen/_3sdp</dimen>
     <dimen name="veryLowMargin">@dimen/_2sdp</dimen>
+
+    <dimen name="highSpace">@dimen/_110sdp</dimen>
 
     <dimen name="highPadding">@dimen/_20sdp</dimen>
     <dimen name="normalPadding">@dimen/_10sdp</dimen>

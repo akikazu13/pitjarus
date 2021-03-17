@@ -5,6 +5,7 @@ import com.projects.pitjarus_tracking.R;
 /**
  * Created by Sohibun Nawawi on 15/03/2021.
  */
+
 public enum MainMenuEnum {
 
     MENU_VISIT(GlobalVariable.MENU_NAME_VISIT, R.drawable.ic_visited),

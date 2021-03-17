@@ -11,4 +11,10 @@ public class GlobalVariable {
     public static final String MENU_NAME_DASHBOARD = "Dashboard";
     public static final String MENU_NAME_TRANSMISSION = "Transmission History";
     public static final String MENU_NAME_LOGOUT = "Logout";
+
+    public static final String MENU_NAME_INFORMATION = "Informasi";
+    public static final String MENU_NAME_PRODUCT_CHECK = "Product Check";
+    public static final String MENU_NAME_PROMO = "SKU Promo";
+    public static final String MENU_NAME_SUMMARY = "Ringkasan OOS";
+    public static final String MENU_NAME_INVESTMENT = "Store Invesment";
 }

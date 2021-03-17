@@ -9,11 +9,18 @@
     <string name="title_apk">App Ver 1.0.0 20013FEA6BCC820C</string>
 
     <string name="title_list_store">Daftar Toko</string>
+    <string name="title_dashboard_store">Dashboard Toko</string>
     <string name="title_status_store">Perfect Store</string>
 
     <string name="tag_channel_name">%1$s : %2$s</string>
     <string name="tag_area_name">%1$s - %2$s</string>
+    <string name="tag_progres">%1$d / %2$d</string>
+
     <string name="title_button_login">Login</string>
+    <string name="title_button_reset">Reset</string>
+    <string name="title_button_visit">Visit</string>
+    <string name="title_button_no_visit">No Visit</string>
+    <string name="title_button_finished">Selesai Visit</string>
 
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>

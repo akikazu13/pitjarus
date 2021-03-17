@@ -28,6 +28,5 @@
             android:text="@{model.name}"
             style="@style/textContentBodyStyle"
             tools:text="Target Install CDFDPC"/>
-
     </LinearLayout>
 </layout>

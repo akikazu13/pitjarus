@@ -32,7 +32,7 @@ public class StoreModel extends BaseModel{
     @ColumnInfo(name = "store_id")
     private String storeId;
 
-    @SerializedName("Store_code")
+    @SerializedName("store_code")
     @ColumnInfo(name = "store_code")
     private String storeCode;
 

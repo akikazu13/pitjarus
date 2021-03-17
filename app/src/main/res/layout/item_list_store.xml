@@ -13,6 +13,7 @@
         android:id="@+id/itemStoreLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/veryLowMargin"
         android:padding="@dimen/normalPadding"
         android:background="@drawable/roundrect_all_white">
         <RelativeLayout

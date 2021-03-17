@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * Created by Sohibun Nawawi on 13/03/2021.
  */
+
 public class MainMenuActivity extends BaseActivity<ActivityMainMenuBinding> {
 
     private final List<MainMenuModel> mainMenuModelList = new ArrayList<>();
