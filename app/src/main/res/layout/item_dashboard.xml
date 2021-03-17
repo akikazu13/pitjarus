@@ -14,7 +14,9 @@
         android:orientation="vertical"
         android:background="@drawable/roundrect_all_white"
         android:elevation="@dimen/veryLowMargin"
-        android:padding="@dimen/normalPadding">
+        android:padding="@dimen/normalPadding"
+        android:layout_marginTop="@dimen/normalMargin"
+        android:layout_marginBottom="@dimen/normalMargin">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 /**
@@ -104,6 +106,13 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
     }
 
     @Override
+    protected void initAction() {
+        super.initAction();
+
+        binding.btnBack.setOnClickListener(onClick-> onBackPressed());
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -141,8 +150,8 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
         SettingsClient settingsClient = LocationServices.getSettingsClient(this);
         settingsClient.checkLocationSettings(locationSettingsRequest);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
             return;
         }
         getFusedLocationProviderClient(this).requestLocationUpdates(locationRequest, new LocationCallback() {
@@ -167,10 +176,17 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        ListStoreActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+
+    }
+
     @NeedsPermission({android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     void getMyLocation() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
             return;
         }
         map.setMyLocationEnabled(true);

@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <variable
+            name="storeModel"
+            type="com.projects.pitjarus_tracking.models.StoreModel" />
         <variable
             name="itemDasboardAdapter"
             type="com.projects.pitjarus_tracking.adapters.SimpleRecyclerAdapter" />
@@ -73,26 +77,27 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="@{storeModel.storeName}"
                         tools:text="Nama Toko Kita"
                         style="@style/textContentTitleStyle"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="@{storeModel.isPerfect ? View.VISIBLE : View.GONE, default=gone}"
                         android:src="@drawable/ic_perfect"
                         android:layout_alignParentEnd="true"/>
                 </RelativeLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@{storeModel.storeCode}"
                     tools:text="N-Store 1"
                     android:layout_marginTop="@dimen/lowMargin"
                     style="@style/textContentBodyStyle"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@{{@string/tag_channel_name(storeModel.channelName, storeModel.subchannelName)}"
                     tools:text="Cluster : Small"
                     android:layout_marginTop="@dimen/mediumMargin"
                     style="@style/textOverlineStyle"/>
@@ -112,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/lowMargin"
                             android:layout_marginEnd="@dimen/lowMargin"
-                            android:text="TT-Regular"
+                            android:text="@{storeModel.regionName}"
                             tools:text="TT-Regular"
                             android:textColor="@color/white"
                             style="@style/textOverlineStyle"/>
@@ -128,7 +133,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/lowMargin"
                             android:layout_marginEnd="@dimen/lowMargin"
-                            android:text="ERTM-Big"
+                            android:text="@{storeModel.areaName}"
                             tools:text="ERTM-Big"
                             android:textColor="@color/white"
                             style="@style/textOverlineStyle"/>
@@ -143,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/lowMargin"
                             android:layout_marginEnd="@dimen/lowMargin"
-                            android:text="Pareto"
+                            android:text="@{storeModel.channelName}"
                             tools:text="Pareto"
                             android:textColor="@color/white"
                             style="@style/textOverlineStyle"/>
@@ -164,7 +169,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/normalMargin"
                 app:setAdapter="@{itemDasboardAdapter}"
                 app:setupHorizontalRecyclerView="@{@dimen/normalMargin}"
                 tools:listitem="@layout/item_dashboard"
@@ -174,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/highMargin"
+                android:layout_marginTop="@dimen/normalMargin"
                 app:setAdapter="@{storeMenuAdapter}"
                 app:setupDinamisGridRecyclerView="@{@dimen/highMargin}"
                 tools:listitem="@layout/item_store_menu"/>
@@ -183,6 +187,7 @@
                 android:layout_height="match_parent"
                 android:gravity="bottom">
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFinish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_button_finished"

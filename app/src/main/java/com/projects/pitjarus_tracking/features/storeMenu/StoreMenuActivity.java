@@ -1,5 +1,7 @@
 package com.projects.pitjarus_tracking.features.storeMenu;
 
+import android.content.Intent;
+
 import com.projects.pitjarus_tracking.R;
 import com.projects.pitjarus_tracking.adapters.SimpleRecyclerAdapter;
 import com.projects.pitjarus_tracking.data.GlobalVariable;
@@ -7,8 +9,12 @@ import com.projects.pitjarus_tracking.databinding.ActivityStoreMenuBinding;
 import com.projects.pitjarus_tracking.databinding.ItemDashboardBinding;
 import com.projects.pitjarus_tracking.databinding.ItemStoreMenuBinding;
 import com.projects.pitjarus_tracking.features.BaseActivity;
+import com.projects.pitjarus_tracking.features.listStore.ListStoreActivity;
 import com.projects.pitjarus_tracking.models.ProgressModel;
 import com.projects.pitjarus_tracking.models.StoreMenuModel;
+import com.projects.pitjarus_tracking.models.StoreModel;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +25,9 @@ import java.util.List;
 
 public class StoreMenuActivity extends BaseActivity<ActivityStoreMenuBinding> {
 
-    private List<ProgressModel> progressModelList = new ArrayList<>();
-    private List<StoreMenuModel> storeMenuModelList = new ArrayList<>();
+    private StoreModel storeModel;
+    private final List<ProgressModel> progressModelList = new ArrayList<>();
+    private final List<StoreMenuModel> storeMenuModelList = new ArrayList<>();
     private SimpleRecyclerAdapter<ProgressModel> progressAdapter;
     private SimpleRecyclerAdapter<StoreMenuModel> storeMenuAdapter;
 
@@ -33,6 +40,8 @@ public class StoreMenuActivity extends BaseActivity<ActivityStoreMenuBinding> {
     protected void initData() {
         super.initData();
 
+        storeModel = Parcels.unwrap(getIntent().getParcelableExtra("storeModel"));
+
         setDashboardList();
         setMenuStore();
     }
@@ -41,11 +50,26 @@ public class StoreMenuActivity extends BaseActivity<ActivityStoreMenuBinding> {
     protected void initLayout() {
         super.initLayout();
 
+        binding.setStoreModel(storeModel);
+
         progressAdapter.setMainData(progressModelList);
         binding.setItemDasboardAdapter(progressAdapter);
 
         storeMenuAdapter.setMainData(storeMenuModelList);
         binding.setStoreMenuAdapter(storeMenuAdapter);
+    }
+
+    @Override
+    protected void initAction() {
+        super.initAction();
+
+        binding.btnFinish.setOnClickListener(onClick->{
+            Intent intent = new Intent(StoreMenuActivity.this, ListStoreActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        binding.btnBack.setOnClickListener(onClick-> onBackPressed());
     }
 
     private void setDashboardList(){
