@@ -1,17 +1,22 @@
 package com.projects.pitjarus_tracking.features.listStore;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -135,7 +140,6 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 14);
             map.animateCamera(cameraUpdate);
         }
-
         ListStoreActivityPermissionsDispatcher.startLocationUpdateWithPermissionCheck(this);
     }
 
@@ -176,8 +180,6 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
 
             getMyLocation();
             startLocationUpdate();
-             } else {
-            Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -194,6 +196,7 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
                 ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
             return;
         }
+        checkMyService(this);
         map.setMyLocationEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
         FusedLocationProviderClient locationProviderClient  = getFusedLocationProviderClient(this);
@@ -213,6 +216,10 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
             return;
         }
         currentLocation = location;
+        checkMyService(this);
+        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 14);
+        map.animateCamera(cameraUpdate);
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -227,5 +234,27 @@ public class ListStoreActivity extends BaseActivity<ActivityListStoreBinding> {
         }
     }
 
+    private void checkMyService(Context context){
+        LocationManager locationManager =  (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
 
+        try {
+            gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!gps_enabled && !network_enabled){
+            new AlertDialog.Builder(context)
+                    .setMessage("Tidak bisa mengakses lokasi, periksa jaringan atau setting GPS anda.")
+                    .setNegativeButton("Ok", null)
+                    .show();
+        }
+    }
 }
